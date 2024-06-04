@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InnovateTech - Your Tech Destination</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="../day17/bro.css" defer></script>
+</head>
+<body>
+  <header>
+    <h1>GROCERY STORE</h1>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+  </nav>
+  <main>
+    <section class="product-list">
+      <h>GROCERY ITEAMS</h>
+
+      <h2>SURF EXCEL</h2>
+      
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpZ35Cuc3nqhs3rmlAK2TE7ZTnTmPAXj9ASw&s"alt="SURF EXCEL">
+        <p>[Surf Excel Detergent Powder Easy Wash 1kg]</p>
+        <p>$20</p>
+        <p><label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="0" min="0"></p>
+        <button onclick="addToCart(this)">Add to Cart</button>
+        <section class="product-list">
+
+       
+          <h3>AGRIMINE PAPPAD</h3>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ0cfjKfPId6OEWkOX1DiIqckQ87cx0u0iUA&s"alt="AGRIMINE PAPPAD">
+            <p>[Agrimine Papad with Mild Green Chilli Flakes 400 gm]</p>
+            <p>$8</p>
+            <p><label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" value="0" min="0"></p>
+            <button onclick="addToCart(this)">Add to Cart</button>
+            <section class="product-list">
+
+            <h4>TATA SALT</h4>
+    
+              <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3z9a-wWNIVLYv8W6tjwLzLE1pDqWsIVCt73DyEpY752EkX4Tx1eqnlDdqI8KD0Y4FKRo&usqp=CAU" alt="TATA SALT">
+              <p>[Tata Salt, 1kg]]</p>
+              <p>$10</p>
+              <p><label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" value="0" min="0"></p>
+              <button onclick="addToCart(this)">Add to Cart</button>
+              <section class="product-list">
+
+                <h5>OREO</h5>
+          
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIc6uDebf0-IUJrhOdeKiV5mkwaOeUXW8Qm-07igXJuqG6ACRsrblE7wDQtBxdY1zWoZg&usqp=CAU" alt="OREO">
+               
+                <p>[Oreo Cadbury Vanilla Flavour Crème Sandwich Biscuit, 481.25 gram Jumbo Pack]</p>
+                <p>$15</p>
+                <p><label for="quantity">Quantity:</label>
+                  <input type="number" id="quantity" value="0" min="0"></p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+                <section class="product-list">
+
+                <h6>MAGGI</h6>
+        
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn1dvJSD1uY-bHXAiVdolELdAcWpnMtONTwqpTSGMuER7Q48b5QG9tKaK9xzfLxRPaQWE&usqp=CAU" alt="MAGGI">
+                  
+                  <p>[MAGGI 2-minute Instant Noodles,  Favourite Masala Taste, 70g, Pouch]</p>
+                  <p><label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" value="0" min="0"></p>
+                  <p>$5</p>
+                  <button onclick="addToCart(this)">Add to Cart</button>
+                  <section class="product-list">
+      </article>
+      </section>
+    <section id="cart" class="hidden">
+      <h2>Your Cart</h2>
+    
+      <ul id="cart-items"></ul>
+      <p>Total: $<span id="cart-total">0.00</span></p>
+      <button onclick="clearCart()">Empty Cart</button>
+    </section>
+  </main>
+  <footer>
+  
+  </footer>
+  <script>
+    let cartItems = []; // Array to store cart items
+
+    function addToCart(button) {
+      // Get product information from the product article
+      const product = {
+        name: button.parentElement.querySelector('h2,h3,h4,h5,h6').textContent,
+        price: parseFloat(button.parentElement.querySelector('p').textContent.slice(1))
+      };
+
+      cartItems.push(product); // Add product to cart
+
+      updateCart(); // Update cart display
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      cartList.innerHTML = ''; // Clear existing cart items
+
+      let total = 0;
+      for (const item of cartItems) {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.name + ' - $' + item.price.toFixed(2);
+        
+        // Add a remove button for each item
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.onclick = function() {
+          removeFromCart(item);
+        };
+        listItem.appendChild(removeButton);
+
+        cartList.appendChild(listItem);
+        total += item.price;
+      }
+
+      document.getElementById('cart-total').textContent = total.toFixed(2);
+
+      // Show the cart section if items are added
+      if (cartItems.length > 0) {
+        document.getElementById('cart').classList.remove('hidden');
+      } else {
+        document.getElementById('cart').classList.add('hidden');
+      }
+    }
+
+    function removeFromCart(item) {
+      // Find the index of the item in the cart array
+      const itemIndex = cartItems.findIndex(cartItem => cartItem.name === item.name);
+
+      if (itemIndex !== -1) {
+        cartItems.splice(itemIndex, 1); // Remove the item from the array
+        updateCart(); // Update cart display after removal
+      }
+    }
+
+    function clearCart() {
+      cartItems = []; // Empty the cart array
+      updateCart(); // Update cart display to show empty cart
+    }
+  </script>
+</body>
+</html> 
+
+
+
+
+  

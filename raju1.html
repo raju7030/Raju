@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .checkbox {
+      margin-bottom: 15px;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form action="#">
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <div class="checkbox">
+        <input type="checkbox" name="remember">
+        <label for="remember">Remember me</label>
+      </div>
+      <a href="#" class="forgot-password">Forgot password?</a>
+      <button type="button"onclick="redirect()">Login</button>
+
+    </form>
+    <script>
+        function redirect(){
+            window.location.href="file:///C:/Users/gunda/OneDrive/Desktop/web%20technology/java%20script/day1/day2/day3/day4/day5/day6/day7/day8/day9/day10/day11/day12/day13/day14/day15/day16/day17/raju.html"
+        }
+    </script>
+  </div>
+</body>
+</html>
+
+
+
